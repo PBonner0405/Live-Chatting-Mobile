@@ -1,12 +1,33 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(WBChat());
+
+/**
+ * Define Custom Themes for iOS & Android
+ **/
+
+// iOS Theme
+final ThemeData kIOSTheme = new ThemeData(
+  primarySwatch: Colors.orange,
+  primaryColor: Colors.grey[100],
+  primaryColorBrightness: Brightness.light,
+);
+// Android Theme
+final ThemeData kDefaultTheme = new ThemeData(
+  primarySwatch: Colors.purple,
+  accentColor: Colors.orangeAccent[400],
+);
 
 class WBChat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: "WB Chat",
+      // Set Theme for Android & iOS
+      theme: defaultTargetPlatform == TargetPlatform.iOS
+      ? kIOSTheme
+      : kDefaultTheme,
       home: new MainScreen(),
     );
   }
@@ -24,10 +45,14 @@ class MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   // Define Controllers
   final TextEditingController _textController = new TextEditingController();
   final List<MessageContent> _messages = <MessageContent>[];
+  bool _isComposing = false;
 
   // Define Functions
   void _handleSubmitted(String text) {
     _textController.clear();
+    setState(() {
+      _isComposing = false;
+    });
     MessageContent message = new MessageContent(
       text: text,
       animationController: new AnimationController(
@@ -85,13 +110,19 @@ class MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                 new Flexible(
                   child: new TextField(
                     controller: _textController,
+                    // Define onChanged callback
+                    onChanged: (String text) {
+                      setState(() {
+                        _isComposing = text.length > 0;
+                      });
+                    },
                     onSubmitted: _handleSubmitted,
                     decoration: new InputDecoration.collapsed(hintText: "Send a Message"),
                   ),
                 ),
                 new Container(
                   margin: new EdgeInsets.symmetric(horizontal: 4.0),
-                  child: new IconButton(icon: new Icon(Icons.send), onPressed: () => _handleSubmitted(_textController.text)),
+                  child: new IconButton(icon: new Icon(Icons.send), onPressed: _isComposing ? () => _handleSubmitted(_textController.text): null),
                 )
               ],
             ),
@@ -124,15 +155,17 @@ class MessageContent extends StatelessWidget {
               margin: const EdgeInsets.only(right: 16.0),
               child: new CircleAvatar(child: new Text(_name[0])),
             ),
-            new Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                new Text(_name, style: Theme.of(context).textTheme.subhead),
-                new Container(
-                  margin: const EdgeInsets.only(top: 5.0),
-                  child: new Text(text),
-                ),
-              ],
+            new Expanded(
+              child: new Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  new Text(_name, style: Theme.of(context).textTheme.subhead),
+                  new Container(
+                    margin: const EdgeInsets.only(top: 5.0),
+                    child: new Text(text),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
