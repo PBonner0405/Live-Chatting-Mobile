@@ -23,12 +23,12 @@ class MainScreenState extends State<MainScreen> {
 
   // Define Controllers
   final TextEditingController _textController = new TextEditingController();
-  final List<ChatMessage> _messages = <ChatMessage>[];
+  final List<MessageContent> _messages = <MessageContent>[];
 
   // Define Functions
   void _handleSubmitted(String text) {
     _textController.clear();
-    ChatMessage message = new ChatMessage(
+    MessageContent message = new MessageContent(
       text: text,
     );
     setState(() {
@@ -90,9 +90,9 @@ class MainScreenState extends State<MainScreen> {
 
 const String _name = "WB PY1";
 
-// Define Individual Chat Content Wraper
-class ChatMessage extends StatelessWidget {
-  ChatMessage({this.text});
+// Define Individual Chat Content Wrapper
+class MessageContent extends StatelessWidget {
+  MessageContent({this.text});
   final String text;
   @override
   Widget build(BuildContext context) {
