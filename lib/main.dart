@@ -78,6 +78,7 @@ class MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text("WB Chat"),
+        elevation: Theme.of(context).platform == TargetPlatform.iOS ? 0.0 : 4.0,
       ),
       body: new Column(
         children: <Widget>[
