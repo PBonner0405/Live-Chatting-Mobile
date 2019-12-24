@@ -12,11 +12,20 @@ class WBChat extends StatelessWidget {
   }
 }
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
+
+  @override
+  State createState() => new MainScreenState();
+
+}
+
+class MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(title: new Text("WB Chat")),
+      appBar: new AppBar(
+        title: new Text("WB Chat"),
+      ),
     );
   }
 }
