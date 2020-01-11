@@ -74,5 +74,43 @@ class _LoginState extends State<Login> {
         _playAnimation();
       }
     }
+
+    // Building Front-End widgets
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Login'),
+      ),
+      body: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            ButtonTheme(
+              minWidth: 256.0,
+              height: 32.0,
+              child: RaisedButton(
+                onPressed: () => _login(parentContext),
+                child: Text(
+                  "Login with Google",
+                  style: TextStyle(color: Colors.white),
+                ),
+                color: Colors.redAccent,
+              ),
+            ),
+            ButtonTheme(
+              minWidth: 256.0,
+              height: 32.0,
+              child: RaisedButton(
+                child: Text(
+                  "Login with Facebook",
+                  style: TextStyle(color: Colors.white),
+                ),
+                color: Colors.blueAccent,
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
