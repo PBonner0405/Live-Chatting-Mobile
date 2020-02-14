@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "418262923355",
+    "firebase_url": "https://livechatflutter.firebaseio.com",
+    "project_id": "livechatflutter",
+    "storage_bucket": "livechatflutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418262923355:android:003fc11b475305c2c1277e",
+        "android_client_info": {
+          "package_name": "com.example.livechatting"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "418262923355-6prm4mbr9q36hl0a8eq6elkhege2s04q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3pbDx8fVybOyUEoiirSeR1E40_eDghME"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "418262923355-6prm4mbr9q36hl0a8eq6elkhege2s04q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
